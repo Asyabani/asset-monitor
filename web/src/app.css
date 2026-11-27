@@ -1,0 +1,570 @@
+/* ============================================================================
+   web-asset-monitor — security-print register (direction seed f4c9fc23)
+   Oxblood ink identity · tinted security-paper register ground (never cream)
+   guilloché line-art · gold-foil + security-green validity seals · ruled columns
+   ========================================================================== */
+
+:root {
+	/* --- ink (identity; drenches the landing) --- */
+	--ink: #48101d; /* deep oxblood */
+	--ink-700: #5e1626;
+	--ink-500: #7a2033;
+	--ink-ink: #2a0b12; /* near-black oxblood, body text on paper */
+
+	/* --- security paper (register ground; NOT cream) --- */
+	--paper: #e7ebe3; /* pale celadon-gray banknote stock */
+	--paper-2: #dde3da; /* recessed field */
+	--paper-3: #d2d9cf; /* deeper tint / rule fills */
+	--paper-line: #b9c3b7; /* ruled intaglio hairline on paper */
+	--paper-ink-2: #55564a; /* secondary text on paper (tinted, not gray) */
+
+	/* --- on-ink text --- */
+	--on-ink: #f3ead9; /* warm document ivory, used as TEXT on oxblood (not a ground) */
+	--on-ink-2: #d8b7a9; /* secondary on oxblood, tinted from hue */
+	--ink-line: #6c2435; /* hairline on oxblood */
+
+	/* --- metals & seals --- */
+	--foil: #b4893a; /* antique gold foil */
+	--foil-hi: #e4c57e; /* foil highlight */
+	--foil-deep: #8a6523;
+	--seal-green: #1f6b4f; /* security green = valid */
+
+	/* --- status (validity) --- */
+	--st-valid: #1f6b4f;
+	--st-soon: #a66612; /* ochre/amber */
+	--st-crit: #a32a1c; /* signal red */
+	--st-expired: #5c1a12; /* struck dark */
+	--st-unknown: #6a6a5c;
+
+	--radius: 3px;
+	--rule: 1px;
+	--maxw: 1120px;
+
+	--font-ui: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: 'Spline Sans Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+	--shadow-doc: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 14px 34px -20px rgba(42, 11, 18, 0.55);
+	--ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: var(--paper);
+	/* faint engine-turned security-print tint on the ground */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cg fill='none' stroke='%23aeb9ac' stroke-width='.5' opacity='.55'%3E%3Cpath d='M0 6 Q12 0 24 6 T48 6'/%3E%3Cpath d='M0 18 Q12 12 24 18 T48 18'/%3E%3C/g%3E%3C/svg%3E");
+	color: var(--ink-ink);
+	font-family: var(--font-ui);
+	font-size: 16px;
+	line-height: 1.55;
+	font-feature-settings: 'ss01';
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* --- browser surfaces carry the design --- */
+::selection {
+	background: var(--ink);
+	color: var(--on-ink);
+}
+:focus-visible {
+	outline: 2px solid var(--foil);
+	outline-offset: 2px;
+}
+* {
+	caret-color: var(--ink);
+}
+* {
+	scrollbar-color: var(--ink) transparent;
+	scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+	width: 11px;
+	height: 11px;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--ink);
+	border: 2px solid var(--paper);
+	border-radius: 0;
+}
+::-webkit-scrollbar-track {
+	background: var(--paper-3);
+}
+
+a {
+	color: var(--ink);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--foil);
+}
+a:hover {
+	text-decoration-color: var(--ink);
+}
+
+/* ============================ Typography ================================= */
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-ui);
+	font-weight: 800;
+	line-height: 1.04;
+	letter-spacing: -0.02em;
+	margin: 0;
+	text-wrap: balance;
+}
+
+.display {
+	font-weight: 900;
+	font-size: clamp(2.05rem, 7vw, 5.25rem);
+	line-height: 0.98;
+	letter-spacing: -0.03em;
+	overflow-wrap: break-word;
+}
+
+.legend {
+	font-family: var(--font-mono);
+	font-weight: 600;
+	font-size: 0.72rem;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+}
+
+.serial {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0.02em;
+}
+
+.measure {
+	max-width: 64ch;
+}
+
+/* ============================ Layout ==================================== */
+
+.shell {
+	max-width: var(--maxw);
+	margin: 0 auto;
+	padding: 0 clamp(16px, 4vw, 40px);
+}
+
+/* ============================ Masthead ================================== */
+
+.masthead {
+	background: var(--ink);
+	color: var(--on-ink);
+	border-bottom: 2px solid var(--foil);
+}
+.masthead .row {
+	max-width: var(--maxw);
+	margin: 0 auto;
+	padding: 14px clamp(16px, 4vw, 40px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+.wordmark {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	color: var(--on-ink);
+	text-decoration: none;
+}
+.wordmark .seal-mini {
+	flex: none;
+}
+.wordmark .wm-text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1;
+}
+.wordmark .wm-name {
+	font-weight: 800;
+	letter-spacing: -0.01em;
+	font-size: 1.02rem;
+}
+.wordmark .wm-sub {
+	font-family: var(--font-mono);
+	font-size: 0.6rem;
+	letter-spacing: 0.26em;
+	text-transform: uppercase;
+	color: var(--on-ink-2);
+	margin-top: 3px;
+}
+.masthead nav a {
+	color: var(--on-ink);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.92rem;
+}
+.masthead nav a:hover {
+	color: var(--foil-hi);
+}
+
+/* ============================ Buttons (foil seal) ====================== */
+
+.btn {
+	--b-ink: var(--ink);
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	font-family: var(--font-ui);
+	font-weight: 700;
+	font-size: 0.96rem;
+	letter-spacing: 0.01em;
+	padding: 12px 22px;
+	border-radius: var(--radius);
+	border: 1px solid var(--foil-deep);
+	cursor: pointer;
+	text-decoration: none;
+	transition:
+		transform 0.18s var(--ease),
+		box-shadow 0.18s var(--ease),
+		background 0.18s var(--ease);
+}
+.btn-foil {
+	background: linear-gradient(177deg, var(--foil-hi), var(--foil) 46%, var(--foil-deep));
+	color: #3a2607;
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.5) inset,
+		0 10px 22px -14px rgba(58, 38, 7, 0.9);
+}
+.btn-foil:hover {
+	transform: translateY(-1px);
+	box-shadow:
+		0 1px 0 rgba(255, 255, 255, 0.6) inset,
+		0 16px 26px -14px rgba(58, 38, 7, 0.95);
+}
+.btn-ink {
+	background: var(--ink);
+	color: var(--on-ink);
+	border-color: var(--ink-ink);
+}
+.btn-ink:hover {
+	background: var(--ink-700);
+	transform: translateY(-1px);
+}
+.btn-ghost {
+	background: transparent;
+	color: var(--ink);
+	border: 1px solid var(--paper-line);
+}
+.btn-ghost:hover {
+	border-color: var(--ink);
+	background: var(--paper-2);
+}
+.btn:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+	transform: none !important;
+	box-shadow: none;
+}
+.btn:active {
+	transform: translateY(1px);
+}
+
+/* ============================ Document panel =========================== */
+
+.doc {
+	position: relative;
+	background: var(--paper);
+	border: 1px solid var(--paper-line);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-doc);
+}
+.doc::before {
+	/* intaglio inner keyline */
+	content: '';
+	position: absolute;
+	inset: 5px;
+	border: 1px solid var(--paper-line);
+	border-radius: 1px;
+	pointer-events: none;
+	opacity: 0.6;
+}
+.doc-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	padding: 14px 18px;
+	border-bottom: 1px solid var(--paper-line);
+}
+.doc-title {
+	font-weight: 800;
+	font-size: 1.12rem;
+	letter-spacing: -0.01em;
+}
+.doc-body {
+	padding: 18px;
+}
+
+/* ============================ Forms (lodgement) ======================== */
+
+.field {
+	display: block;
+}
+.field + .field {
+	margin-top: 16px;
+}
+.field > .field-label {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin-bottom: 7px;
+}
+.field-label .legend {
+	color: var(--paper-ink-2);
+}
+.field-label .no {
+	font-family: var(--font-mono);
+	color: var(--foil-deep);
+	font-weight: 700;
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+	width: 100%;
+	background: #f2f4ee;
+	border: 1px solid var(--paper-line);
+	border-bottom-width: 2px;
+	border-radius: 2px;
+	color: var(--ink-ink);
+	padding: 11px 13px;
+	font-family: var(--font-ui);
+	font-size: 1rem;
+	transition:
+		border-color 0.16s var(--ease),
+		background 0.16s var(--ease);
+}
+input::placeholder,
+textarea::placeholder {
+	color: #5e6256;
+}
+input:focus,
+textarea:focus {
+	outline: none;
+	border-color: var(--ink);
+	background: #fff;
+}
+textarea {
+	min-height: 168px;
+	resize: vertical;
+	font-family: var(--font-mono);
+	font-size: 0.95rem;
+	line-height: 1.7;
+	/* ruled form field */
+	background-image: repeating-linear-gradient(
+		var(--paper-line) 0 1px,
+		transparent 1px 1.7em
+	);
+	background-attachment: local;
+	background-position: 0 2.2em;
+}
+
+/* ============================ Stamps =================================== */
+
+.stamp {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: var(--font-mono);
+	font-weight: 700;
+	font-size: 0.72rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	padding: 3px 9px;
+	border: 2px solid currentColor;
+	border-radius: 2px;
+	line-height: 1.1;
+	white-space: nowrap;
+}
+.stamp[data-tone='valid'] {
+	color: var(--st-valid);
+}
+.stamp[data-tone='soon'] {
+	color: var(--st-soon);
+}
+.stamp[data-tone='crit'] {
+	color: var(--st-crit);
+}
+.stamp[data-tone='expired'] {
+	color: var(--st-expired);
+}
+.stamp[data-tone='unknown'] {
+	color: var(--st-unknown);
+	border-style: dashed;
+}
+.stamp[data-tone='pending'] {
+	color: var(--ink-500);
+	border-style: dashed;
+}
+.stamp-struck {
+	position: relative;
+}
+/* angled overprint variant (used on the register) */
+.stamp-print {
+	transform: rotate(-4deg);
+	opacity: 0.92;
+	box-shadow: 0 0 0 1px currentColor inset;
+}
+
+/* ============================ Register table ========================== */
+
+.register {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92rem;
+}
+.register thead th {
+	text-align: left;
+	padding: 9px 12px;
+	border-bottom: 2px solid var(--ink);
+	color: var(--paper-ink-2);
+	font-family: var(--font-mono);
+	font-weight: 600;
+	font-size: 0.66rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+.register tbody td {
+	padding: 11px 12px;
+	border-bottom: 1px solid var(--paper-line);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.register tbody tr:nth-child(even) td {
+	background: rgba(185, 195, 183, 0.16);
+}
+.register td.col-no {
+	font-family: var(--font-mono);
+	color: var(--foil-deep);
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+.register td.col-domain {
+	white-space: normal;
+	word-break: break-all;
+	font-weight: 600;
+}
+.register td.col-domain .as {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	color: var(--paper-ink-2);
+	font-weight: 400;
+	margin-top: 2px;
+}
+.register td .num {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+.register td .days {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+	font-size: 0.8rem;
+	color: var(--paper-ink-2);
+}
+.register td.col-reg {
+	white-space: normal;
+	color: var(--paper-ink-2);
+	font-size: 0.86rem;
+}
+
+/* microtext security rule */
+.microrule {
+	height: 10px;
+	overflow: hidden;
+	color: var(--paper-line);
+	font-family: var(--font-mono);
+	font-size: 8px;
+	letter-spacing: 0.3em;
+	white-space: nowrap;
+	user-select: none;
+	line-height: 10px;
+}
+
+/* ============================ Footer notice =========================== */
+
+.notice {
+	border-top: 2px solid var(--foil);
+	background: var(--ink);
+	color: var(--on-ink-2);
+}
+.notice .shell {
+	padding: 22px clamp(16px, 4vw, 40px) 34px;
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+}
+.notice .legend {
+	color: var(--foil-hi);
+}
+.notice p {
+	margin: 0;
+	max-width: 68ch;
+	font-size: 0.86rem;
+	line-height: 1.6;
+}
+.notice .muted {
+	color: var(--on-ink-2);
+}
+
+.err {
+	color: var(--st-crit);
+	font-family: var(--font-mono);
+	font-size: 0.86rem;
+}
+.muted {
+	color: var(--paper-ink-2);
+}
+
+/* ============================ Motion =================================== */
+
+@keyframes seal-impress {
+	0% {
+		opacity: 0;
+		transform: scale(1.22) rotate(-3deg);
+	}
+	60% {
+		opacity: 1;
+		transform: scale(0.97) rotate(0.5deg);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1) rotate(0deg);
+	}
+}
+@keyframes row-ink {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+@media (max-width: 720px) {
+	.masthead .wm-sub {
+		display: none;
+	}
+}
