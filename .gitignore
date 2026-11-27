@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# build output
+/web/build
+/web/.svelte-kit
+/web/package
+
+# rahasia — JANGAN pernah di-commit
+.env
+.env.*
+!.env.example
+
+# database lokal (berisi data pendaftar)
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# python
+__pycache__/
+*.pyc
+
+# os
+.DS_Store
