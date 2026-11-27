@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T00:00:00Z",
+  "title": "Design System: web-asset-monitor",
+  "extensions": {
+    "colorMeta": {
+      "ink-oxblood": {
+        "role": "primary",
+        "displayName": "Oxblood Ink",
+        "canonical": "#48101d",
+        "tonalRamp": ["#1a060a", "#2a0b12", "#3a0d16", "#48101d", "#611827", "#7e2435", "#a85568", "#d6a9b3"]
+      },
+      "foil": {
+        "role": "secondary",
+        "displayName": "Antique Gold Foil",
+        "canonical": "#b4893a",
+        "tonalRamp": ["#3a2a0d", "#5a4418", "#7a5d22", "#8a6523", "#b4893a", "#cda35a", "#e4c57e", "#f1dca8"]
+      },
+      "seal-green": {
+        "role": "secondary",
+        "displayName": "Security Green",
+        "canonical": "#1f6b4f",
+        "tonalRamp": ["#0b2a20", "#113d2e", "#17543d", "#1f6b4f", "#2d8a67", "#46a985", "#74c7aa", "#aadfca"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Celadon Security Paper",
+        "canonical": "#e7ebe3",
+        "tonalRamp": ["#4a4d46", "#6a6e64", "#8a8e82", "#a9ae9f", "#c6cabd", "#d7dccf", "#e7ebe3", "#f4f6ef"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Landing hero statement only." },
+      "label": { "displayName": "Legend", "purpose": "Uppercase mono metadata: column headers, FORM A/B, SPESIMEN." },
+      "data": { "displayName": "Record Data", "purpose": "All dates, day-counts, serials, stamps — tabular-nums." }
+    },
+    "shadows": [
+      {
+        "name": "sheet-lift",
+        "value": "0 1px 0 rgba(255,255,255,0.5) inset, 0 14px 34px -20px rgba(42,11,18,0.55)",
+        "purpose": "Lifts a register sheet (.doc) off the paper ground. The only drop shadow in the system."
+      }
+    ],
+    "motion": [
+      { "name": "ease-settle", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for button lift, focus, and the seal impression." },
+      { "name": "seal-impress", "value": "@keyframes: scale(1.22) rot(-3deg) → scale(0.97) rot(0.5deg) → scale(1)", "purpose": "One authored moment: the hero/confirmation seal stamps down and settles." }
+    ],
+    "breakpoints": [
+      { "name": "hero-wrap", "value": "560px" },
+      { "name": "masthead-sub", "value": "720px" },
+      { "name": "register-reflow", "value": "760px" },
+      { "name": "hero-stack", "value": "860px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Foil Seal Button",
+      "kind": "button",
+      "refersTo": "button-foil",
+      "description": "Primary action — a gold-foil seal-button. Used for Mulai cek and all form submits.",
+      "html": "<button class=\"ds-btn-foil\">Mulai cek</button>",
+      "css": ".ds-btn-foil { display:inline-flex; align-items:center; gap:9px; font-family:'Archivo',sans-serif; font-weight:700; font-size:0.96rem; padding:12px 22px; border-radius:3px; border:1px solid #8a6523; color:#3a2607; background:linear-gradient(177deg,#e4c57e,#b4893a 46%,#8a6523); box-shadow:0 1px 0 rgba(255,255,255,0.5) inset,0 10px 22px -14px rgba(58,38,7,0.9); cursor:pointer; transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1); } .ds-btn-foil:hover { transform:translateY(-1px); box-shadow:0 1px 0 rgba(255,255,255,0.6) inset,0 16px 26px -14px rgba(58,38,7,0.95); } .ds-btn-foil:active { transform:translateY(1px); }"
+    },
+    {
+      "name": "Register Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "The paper document panel that holds forms and the register table.",
+      "html": "<div class=\"ds-sheet\"><div class=\"ds-sheet-head\"><span class=\"ds-sheet-title\">Pemeriksaan tunggal</span><span class=\"ds-legend\">Form A</span></div></div>",
+      "css": ".ds-sheet { position:relative; background:#e7ebe3; border:1px solid #b9c3b7; border-radius:3px; box-shadow:0 1px 0 rgba(255,255,255,0.5) inset,0 14px 34px -20px rgba(42,11,18,0.55); } .ds-sheet::before { content:''; position:absolute; inset:5px; border:1px solid #b9c3b7; border-radius:1px; opacity:.6; pointer-events:none; } .ds-sheet-head { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid #b9c3b7; } .ds-sheet-title { font-family:'Archivo',sans-serif; font-weight:800; font-size:1.12rem; color:#2a0b12; letter-spacing:-0.01em; } .ds-legend { font-family:'Spline Sans Mono',monospace; font-weight:600; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:#55564a; }"
+    },
+    {
+      "name": "Lodgement Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text field styled as an official form line; bottom edge is a 2px form-rule.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"klien.co.id\" />",
+      "css": ".ds-input { width:100%; font-family:'Archivo',sans-serif; font-size:1rem; color:#2a0b12; background:#f2f4ee; border:1px solid #b9c3b7; border-bottom-width:2px; border-radius:2px; padding:11px 13px; transition:border-color .16s cubic-bezier(.16,1,.3,1),background .16s cubic-bezier(.16,1,.3,1); } .ds-input::placeholder { color:#5e6256; } .ds-input:focus { outline:none; border-color:#48101d; background:#fff; } .ds-input:focus-visible { outline:2px solid #b4893a; outline-offset:2px; }"
+    },
+    {
+      "name": "Status Stamp",
+      "kind": "chip",
+      "refersTo": "stamp",
+      "description": "Overprinted validity stamp; data-tone sets the color (valid/soon/crit/expired/unknown).",
+      "html": "<span class=\"ds-stamp ds-stamp-crit\">KRITIS</span>",
+      "css": ".ds-stamp { display:inline-flex; align-items:center; font-family:'Spline Sans Mono',monospace; font-weight:700; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; padding:3px 9px; border:2px solid currentColor; border-radius:2px; transform:rotate(-4deg); box-shadow:0 0 0 1px currentColor inset; } .ds-stamp-valid { color:#1f6b4f; } .ds-stamp-soon { color:#a66612; } .ds-stamp-crit { color:#a32a1c; } .ds-stamp-expired { color:#5c1a12; }"
+    },
+    {
+      "name": "Validity Seal",
+      "kind": "custom",
+      "refersTo": "seal",
+      "description": "Circular guilloché seal with a status mark; valid seals are lit, expired seals struck.",
+      "html": "<span class=\"ds-seal\"><svg viewBox=\"-50 -50 100 100\" width=\"48\" height=\"48\"><circle r=\"47\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><circle r=\"41\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.7\" opacity=\"0.7\"/><path d=\"M -13 1 L -4 11 L 15 -11\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>",
+      "css": ".ds-seal { display:inline-grid; place-items:center; color:#1f6b4f; filter:drop-shadow(0 0 6px rgba(31,107,79,0.55)); }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Oxblood masthead band with foil underline, gold monogram seal wordmark, ivory links.",
+      "html": "<header class=\"ds-masthead\"><a class=\"ds-wordmark\">web-asset-monitor</a><nav><a class=\"ds-navlink\">Buka register →</a></nav></header>",
+      "css": ".ds-masthead { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 24px; background:#48101d; border-bottom:2px solid #b4893a; } .ds-wordmark { font-family:'Archivo',sans-serif; font-weight:800; font-size:1.02rem; color:#f3ead9; text-decoration:none; letter-spacing:-0.01em; } .ds-navlink { font-family:'Archivo',sans-serif; font-weight:600; font-size:0.92rem; color:#f3ead9; text-decoration:none; } .ds-navlink:hover { color:#e4c57e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Register of Record",
+    "overview": "Every web asset — a domain, a hosting plan, a TLS certificate — is treated as an entry in an official register with a stamped validity period. The interface is a security-printed ledger: ceremony surfaces are drenched in deep oxblood ink; working surfaces sit on a faintly engine-turned celadon security paper. Status is never a pill or a colored dot — it is a drawn seal plus an overprinted stamp. The world refuses the dark SaaS dashboard and the cream-paper serif certificate alike: no blue, no cream, a heavy grotesque instead of a serif. Gravity comes from guilloché, ruled keylines, gold foil, and monospaced record numerals.",
+    "keyCharacteristics": [
+      "Oxblood ink identity on celadon (never cream) security paper.",
+      "Generative guilloché rosettes and drawn SVG validity seals.",
+      "Status as seal + overprint stamp, color-coded by validity.",
+      "Archivo grotesque display with Spline Sans Mono for all record data.",
+      "Depth is printed (rules, keylines, one sheet shadow), not floated."
+    ],
+    "rules": [
+      { "name": "The Oxblood-or-Paper Rule", "body": "A surface is either drenched oxblood (ceremony) or celadon security paper (work). White and cream are never grounds.", "section": "colors" },
+      { "name": "The Status-is-Stamped Rule", "body": "Validity is shown as a drawn seal plus an overprinted stamp in its status color — never a filled pill, a solid badge, or a bare colored dot.", "section": "colors" },
+      { "name": "The Rare-Foil Rule", "body": "Gold foil marks the single most important action and the seals; scattering it dilutes the metal.", "section": "colors" },
+      { "name": "The Numerals-are-Mono Rule", "body": "Every date, day-count, serial, and legend is Spline Sans Mono with tabular-nums. Archivo never sets record data; mono never sets prose.", "section": "typography" },
+      { "name": "The Printed-Not-Floating Rule", "body": "Separation comes from rules, keylines, and guilloché. Only a register sheet casts a shadow; stamps, seals, chips, and rows never float.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do drench ceremony surfaces (masthead, hero, footer) in oxblood #48101d and keep work surfaces on celadon paper #e7ebe3.",
+      "Do set every date, day-count, serial, and legend in Spline Sans Mono with tabular-nums.",
+      "Do show validity as a drawn seal + an overprint stamp in the status color.",
+      "Do draw every icon as inline SVG in one consistent stroke weight.",
+      "Do convey depth with ruled keylines, the inset sheet border, and guilloché; keep the paper's engine-turned tint faint enough that text stays legible."
+    ],
+    "donts": [
+      "Don't introduce white or cream as a ground, or any blue accent.",
+      "Don't fall back to a generic SaaS card grid (icon + heading + text) or render status as a filled pill or colored dot.",
+      "Don't reach for a serif to signal 'certificate' — Archivo grotesque is the display voice; the certificate feeling comes from guilloché, seals, foil, and ruled columns.",
+      "Don't float elements with drop shadows; only a register sheet lifts off the ground.",
+      "Don't scatter gold foil — it marks the primary action and the seals only."
+    ]
+  }
+}
